@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Developer's Guide</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">BLOG Programming Language </a></h1>
+                <nav><ul>
+                    <li><a href="../">BLOG</a></li>
+                    <li><a href="../pages/documentation.html">Documentation</a></li>
+                    <li><a href="../pages/download.html">Download</a></li>
+                    <li><a href="../pages/contributors.html">Contributors</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Developer's Guide</h1>
+    <p>The BLOG project is hosted on Github. Contributions in the form of GitHub pull requests. </p>
+<h1>General guideline</h1>
+<ul>
+<li>Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features. Make your branch <strong>small</strong> enough that only contains one single feature change, multiple features should be completed in seperate branch and pull request.</li>
+<li>Create an issue if you discover some bug or propose a new feature. Put as much label as possible.</li>
+<li>Do not push commit directly to master. Instead, submit the patch as a GitHub pull request. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. </li>
+<li>When creating a pull request, please link to an issue if it already exists. </li>
+<li>Follow the Code Style Guide. Before sending in your pull request, run sbt/sbt scalastyle to validate the style.</li>
+<li>Large files (e.g. data files &gt; 10MB, any output file, generated pdf etc) should not be added to git repo.</li>
+<li>Update the documentation (in the docs folder) if you add a new feature or commandline option.</li>
+</ul>
+<h1>Code style</h1>
+<p>Use <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html">google java style</a>
+ * 2 spaces for indent
+ * no long lines
+ * Please use \n for line terminator! </p>
+<h1>Eclipse</h1>
+<h3>To set up Eclipse for BLOG development:</h3>
+<ol>
+<li>Download the <a href="http://scala-ide.org/">Scala IDE</a>. This is just Eclipse
+   bundled together with the Scala plugins.</li>
+<li>Generate the Eclipse project file using <code>sbt/sbt eclipse</code>.</li>
+<li><a href="http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-importproject.htm">Import the project into
+   Eclipse</a></li>
+</ol>
+<h3>Code style:</h3>
+<p>Eclipse config file is provided. Please use the version already in git master branch.</p>
+<h3>To run a BLOG model from within Eclipse:</h3>
+<ol>
+<li>Enter <code>Run Configurations</code>, create a new configuration</li>
+<li>Set <code>project</code> to blog</li>
+<li>Set <code>Main class</code> to <code>blog.Main</code></li>
+<li>In the <code>Arguments</code> tab, pass in the path to the BLOG model, and any parameters</li>
+</ol>
+<h3>Troubleshooting:</h3>
+<p>Some things to try if you run into trouble:</p>
+<ol>
+<li>In the Eclipse menu, click Project &gt; Clean</li>
+<li>Right click on the project, click Scala &gt; Add Scala Library to Build Path</li>
+</ol>
+<h1>Generating Lexer and Parser</h1>
+<p>You only need to do this if you modified <code>BLOGLexer.flex</code> or <code>BLOGParser.cup</code></p>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">lexer</span>
+  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">parser</span>
+</pre></div>
+
+
+<h1>Compiling source</h1>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">compile</span>
+  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">stage</span>
+</pre></div>
+
+
+<p>The second command is to ensure you can run <code>blog</code> and <code>iblog</code> in development environment.</p>
+<h1>Package</h1>
+<p>To make a release</p>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">compile</span>
+  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">html</span>
+  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">universal</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+</pre></div>
+
+
+<h2>Generate Debian installation package</h2>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">debian</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+</pre></div>
+
+
+<h2>Generate Windows Installation package</h2>
+<p>You must have WIX installed. Obtain it from http://wixtoolset.org/.</p>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">windows</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+</pre></div>
+
+
+<h1>Git Basics</h1>
+<p>You may also be interested in some Git basics: </p>
+<p>https://github.com/lileicc/dblog/wiki/git-workflow</p>
+<h2>Pull Request</h2>
+<p>The basic unit of code review is a pull request. Here is how you make one. Note you can PR off branches, so there is no need to fork the repo. This is what's referred to as "Shared Repository Model" in the doc below. </p>
+<p>https://help.github.com/articles/using-pull-requests</p>
+<h2>How to use Pull Requests</h2>
+<p>You should create a <em>feature branch</em> whenever you start to work on something. This is the branch you will work off for the entire development cycle. When you finish development on the feature, you will merge this branch back into master. This way, we can ensure that our master branch is always in a good state, and never has anything that is only partially complete.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature_name</span> 
+</pre></div>
+
+
+<p>As early as you can (you can even do this before you start <em>any</em> work) start a pull request on Github. You should use the PR for discussion about this particular feature as well. Periodically push your code to this branch, which will update the PR. It's recommended that you get your code reviewed at regular intervals rather than all at once.</p>
+<h2>Managing Feature Branches &amp; Pull Requests</h2>
+<h3>Squashing Commits</h3>
+<p>The git motto is that you should commit often. Some people go as far as committing every 5-10 minutes. This is perfectly fine, and recommended for your <em>local</em> history while you work. It allows you to revert easily fi you make a mistake. </p>
+<p>However, all these granular commits may not be the easiest thing for a reviewer to address (b/c each commit shows up as a separate page you have to click on and comment). Therefore, you should commit often but <a href="https://ariejan.net/2011/07/05/git-squash-your-latests-commits-into-one">squash your commits</a> before you push to the PR. </p>
+<h3>Updating Your Branch</h3>
+<p>For long features, your feature branch may fall behind of master a lot. This is bad, since it will introduce difficult merge issues later on (the more you fall behind of master, the harder it is for you to merge your changes back into it). Therefore, you will want to regularly update your feature branch with commits that happened on the master branch. </p>
+<p>The desired operation here is a <em>rebase</em> rather than a merge. A rebase will take the history seen on master, and replay it as if they happened on your branch. This has the effect of keeping the history clean, as the only "merge" entries we will see are when we merge feature branches back into master. </p>
+<p>The commands you should run to rebase are</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">fetch</span> <span class="o">--</span><span class="n">all</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+</pre></div>
+
+
+<p>When you do push your code after a rebase, you will have to do so with</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">force</span>
+</pre></div>
+
+
+<p>The <code>--force</code> option is required since a rebase re-writes revision history, so your local history and the upstream history will disagree. <code>--force</code> tells git you want to override the upstream history with the rebased history.</p>
+<h2>Closing a Pull Request</h2>
+<p>When you get an <code>LTGM</code>, just click the merge button on github to merge your changes into master.</p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Interactive Shell and Debugging BLOG Models</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">BLOG Programming Language </a></h1>
+                <nav><ul>
+                    <li><a href="../">BLOG</a></li>
+                    <li><a href="../pages/documentation.html">Documentation</a></li>
+                    <li><a href="../pages/download.html">Download</a></li>
+                    <li><a href="../pages/contributors.html">Contributors</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Interactive Shell and Debugging BLOG Models</h1>
+    <h1>Status</h1>
+<p>The BLOG interactive shell and debugger are alpha-grade features. They might
+contain bugs, and they might change drastically from version to version.</p>
+<h1>Requirement</h1>
+<p>The BLOG interactive shell requires scala 2.10 or above. You may get it from 
+http://www.scala-lang.org/.</p>
+<h1>Introduction</h1>
+<p>Start the BLOG interactive shell using the <code>iblog</code> command. In the examples
+below, lines prefixed with <code>scala&gt;</code> are what you type into the shell. Lines
+without that prefix are output printed by the shell.</p>
+<h1>Example: Debugging Likelihood Weighting</h1>
+<p>Create a LW sampler for the burglary model:</p>
+<div class="highlight"><pre>scala&gt; val d = LWDebugger.make(&quot;example/burglary.blog&quot;)
+Using fixed random seed for repeatability.
+d: blog.debug.LWDebugger = blog.debug.LWDebugger@767dfcb6
+</pre></div>
+
+
+<p>Investigate the model, evidence, and queries:</p>
+<div class="highlight"><pre>scala&gt; d.model.print(System.out)
+random Boolean Burglary
+    if true then ~ blog.distrib.BooleanDistrib()
+random Boolean Earthquake
+    if true then ~ blog.distrib.BooleanDistrib()
+random Boolean Alarm
+    if ((Burglary = true) &amp; (Earthquake = true)) then ~ blog.distrib.BooleanDistrib()
+    elseif (Burglary = true) then ~ blog.distrib.BooleanDistrib()
+    elseif (Earthquake = true) then ~ blog.distrib.BooleanDistrib()
+    elseif true then ~ blog.distrib.BooleanDistrib()
+random Boolean JohnCalls
+    if (Alarm = true) then ~ blog.distrib.BooleanDistrib()
+    elseif true then ~ blog.distrib.BooleanDistrib()
+random Boolean MaryCalls
+    if (Alarm = true) then ~ blog.distrib.BooleanDistrib()
+    elseif true then ~ blog.distrib.BooleanDistrib()
+
+scala&gt; d.evidence
+res0: blog.model.Evidence = [JohnCalls = true, MaryCalls = true]
+
+scala&gt; d.queries
+res1: blog.model.Queries = [Burglary]
+</pre></div>
+
+
+<p>Import trick to avoid having to type <code>d.&lt;method&gt;</code> every time:</p>
+<div class="highlight"><pre>scala&gt; import d._
+import d._
+</pre></div>
+
+
+<p>Get some samples:</p>
+<div class="highlight"><pre>scala&gt; n
+LWSample(logWeight: -7.600902459542082, world: {Basic: {Earthquake=false, Alarm=false, MaryCalls=true, JohnCalls=true, Burglary=false}, Derived: {}})
+
+scala&gt; n
+LWSample(logWeight: -7.600902459542082, world: {Basic: {Earthquake=false, Alarm=false, MaryCalls=true, JohnCalls=true, Burglary=false}, Derived: {}})
+
+scala&gt; n
+LWSample(logWeight: -7.600902459542082, world: {Basic: {Earthquake=false, Alarm=false, MaryCalls=true, JohnCalls=true, Burglary=false}, Derived: {}})
+</pre></div>
+
+
+<p>All samples are stored in <code>samples</code>, and the latest samples is stored in <code>s</code>.</p>
+<div class="highlight"><pre>scala&gt; samples.size
+res6: Int = 3
+
+scala&gt; s
+res8: blog.debug.LWSample = LWSample(logWeight: -7.600902459542082, world: {Basic: {Earthquake=false, Alarm=false, MaryCalls=true, JohnCalls=true, Burglary=false}, Derived: {}})
+
+scala&gt; s.logWeight
+res18: Double = -7.600902459542082
+</pre></div>
+
+
+<p>We can evaluate arbitrary expressions in the possible world of a sample:</p>
+<div class="highlight"><pre>scala&gt; s.eval(&quot;Burglary&quot;)
+res10: Object = false
+
+scala&gt; s.eval(&quot;JohnCalls&quot;)
+res11: Object = true
+
+scala&gt; s.eval(&quot;JohnCalls &amp; MaryCalls&quot;)
+res12: Object = true
+
+scala&gt; s.eval(&quot;1 + 2 + 3&quot;)
+res13: Object = 6
+</pre></div>
+
+
+<p>Run many samples, and then print out the query results:</p>
+<div class="highlight"><pre>scala&gt; sampleMany(10000)
+[... output elided ...]
+
+scala&gt; hist
+Distribution of values for Burglary
+    0.7235478031923686  false
+    0.27645219680763833 true
+</pre></div>
+
+
+<h1>Example: Debugging Metropolis-Hastings</h1>
+<p>The MH sampler is very similar, but its samples provide more information:</p>
+<div class="highlight"><pre>scala&gt; val d = MHDebugger.make(&quot;example/aircraft-static.blog&quot;)
+Using fixed random seed for repeatability.
+Constructing M-H proposer of class blog.sample.GenericProposer
+d: blog.debug.MHDebugger = blog.debug.MHDebugger@370a44f7
+
+scala&gt; 
+
+scala&gt; import d._
+import d._
+
+scala&gt; n
+MHSample(accepted: true, world: {Basic: {b1=(Blip, 3), #Blip=3, #Blip(Source = (Aircraft, 4))=0, #Blip(Source = (Aircraft, 1))=0, #Blip(Source = (Aircraft, 2))=1, #Aircraft=4, #Blip(Source = (Aircraft, 3))=0}, Derived: {}})
+
+scala&gt; s.dump
+MHSample:
+world: {Basic: {b1=(Blip, 3), #Blip=3, #Blip(Source = (Aircraft, 4))=0, #Blip(Source = (Aircraft, 1))=0, #Blip(Source = (Aircraft, 2))=1, #Aircraft=4, #Blip(Source = (Aircraft, 3))=0}, Derived: {}}
+accepted: true
+chosenVar: b1
+chosenVarOldValue: (Blip, 2)
+chosenVarNewValue: (Blip, 3)
+logProposalBackward: -3.332204510175204
+logProposalForward: -3.332204510175204
+logProbRatio: 0.0
+logAcceptRatio: 0.0
+</pre></div>
+
+
+<p>Each sample contains the following fields:</p>
+<ul>
+<li><code>world</code>: the PartialWorld in the sample (a new world if the proposal was
+  accepted, the old world otherwise)</li>
+<li><code>accepted</code>: whether the proposal was accepted</li>
+<li><code>chosenVar</code>: the variable that the GenericProposer chose to modify</li>
+<li><code>chosenVarOldValue</code>: the chosen variable's value in the old world</li>
+<li><code>chosenVarNewValue</code>: the chosen variable's value in the new world</li>
+<li><code>logProposalBackward</code>: <code>log q(x | x')</code></li>
+<li><code>logProposalForward</code>: <code>log q(x' | x)</code></li>
+<li><code>logProbRatio</code>: <code>log( p(x') / p(x) )</code></li>
+<li><code>logAcceptRatio</code>: <code>log( (p(x') * q(x | x')) / (p(x) * q(x' | x)) )</code></li>
+</ul>
+<p>Where <code>p</code> is the true probability given the evidence, and <code>q</code> is the proposal
+probability.</p>
+<h1>Example: Debugging the Particle Filter</h1>
+<p>You can run the particle filter one step at a time using the <code>advance</code> method,
+and inspect the particles on the way. Note that if there is atemporal evidence
+provided, it will be processed before the first timestep. (That's why you see
+"processed timestep -1" in the output below.) If there are atemporal queries,
+they will be processed after the last timestep. (That's why you see "procesed
+timestep 11" twice in the output below.)</p>
+<div class="highlight"><pre>scala&gt; val d = ParticleFilter.make(&quot;example/pf-test.blog&quot;, 10)
+Using fixed random seed for repeatability.
+d: blog.debug.ParticleFilter = blog.debug.ParticleFilter@13973a69
+
+scala&gt; import d._
+import d._
+
+scala&gt; advance
+advance: processed timestep -1
+
+scala&gt; advance
+advance: processed timestep 1
+
+scala&gt; d.currentEvidence
+res2: blog.model.Evidence = [x(@1) = 0.1]
+
+scala&gt; d.currentQueries
+res3: blog.model.Queries = null
+
+scala&gt; advanceUntilFinished
+advance: processed timestep 3
+advance: processed timestep 5
+advance: processed timestep 10
+advance: processed timestep 11
+advance: processed timestep 11
+
+scala&gt; d.currentEvidence
+res13: blog.model.Evidence = null
+
+scala&gt; d.currentQueries
+res12: blog.model.Queries = [/*DerivedVar*/ mu]
+
+scala&gt; particles.size
+res5: Int = 10
+
+scala&gt; val p = particles(2)
+p: blog.debug.Particle = Particle(logWeight: -0.9387766035733844, world: {Basic: {something=3.0, x(@11)=1.2672851367814115}, Derived: {}})
+
+scala&gt; p.eval(&quot;something&quot;)
+res6: Object = 3.0
+
+scala&gt; particles.foreach(particle =&gt; println(particle.eval(&quot;x(@11)&quot;)))
+-0.16279602410074512
+1.2672851367814115
+1.2672851367814115
+-1.0869420759611352
+1.2672851367814115
+0.21966510934467814
+-2.4999577147848684
+-0.2898923550912115
+-0.2898923550912115
+1.0845004791444346
+</pre></div>
+</section>
+
+</body>
+</html>

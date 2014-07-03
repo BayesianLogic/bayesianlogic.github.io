@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Release Note</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">BLOG Programming Language </a></h1>
+                <nav><ul>
+                    <li><a href="../">BLOG</a></li>
+                    <li><a href="../pages/documentation.html">Documentation</a></li>
+                    <li><a href="../pages/download.html">Download</a></li>
+                    <li><a href="../pages/contributors.html">Contributors</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Release Note</h1>
+    <h2>BLOG 0.8 (June 13, 2014)</h2>
+<ul>
+<li>Implemented a correct version of PF with sliding window, uninstantiating the previous timestep. The memory issue with PF is solved. PF used to consume memory linear to time step, now it is increasing slightly only due to accumulation of query result.</li>
+<li>Added LiuWestFilter. It works better than plain bootstrap PF on dynamic models with static parameters.</li>
+<li>Added Tupleset.</li>
+<li>Output into Json format. <ul>
+<li>Refactored original printing into <code>TableWriter</code>.</li>
+</ul>
+</li>
+<li>make target for compiling with debug support (<code>make debug</code>)</li>
+<li>make SamplingEngine work with log weights<ul>
+<li>modify Histogram to use log weights consistently</li>
+<li>remove unused class LogHistogram</li>
+<li>LWSampler supports the calcuation of weight in log domain</li>
+<li>particle filter operate in log domain </li>
+</ul>
+</li>
+<li>Added documentation using Markdown and Pelican (<code>make html</code>)</li>
+<li>adding syntax highlight support for sublime </li>
+<li>Add Multinomial distribution, which accept both fixed and random arguments</li>
+<li>Categorical now accept three forms of arguments:<ol>
+<li>a Map from distinct or fixed symbol to real constants</li>
+<li>a Map from distinct or fixed symbol to real random variable</li>
+<li>a weight array</li>
+</ol>
+</li>
+<li>MultivarGaussian now natively calculate getLogProb()</li>
+<li>Added builtin type <code>RealMatrix</code></li>
+<li>Adding the following distributions to library<ul>
+<li>Laplace</li>
+<li>BooleanDistrib</li>
+<li>Multinomial</li>
+</ul>
+</li>
+<li>Adding builtin functions<ul>
+<li>linear algebra operators: +, -, *, inv, det, transpose, </li>
+<li>sum a matrix column-wise</li>
+<li>vstack to create a matrix from row vectors or a sclar variables</li>
+<li>hstack to create a matrix from column vectors or scalar variables</li>
+<li>repmat to repeat a matrix</li>
+<li>diag to create a diagonal matrix from a vector</li>
+<li>array/matrix indexing (subscript index can be random as well)</li>
+<li>sin, cos, tan, atan2 functions </li>
+<li>builtin constant pi</li>
+<li>eye, zeros, ones builtins</li>
+<li>toInt</li>
+<li>operator on Timestep(mod, plus, minus)</li>
+<li>sum on tupleset</li>
+<li>abs, exp</li>
+</ul>
+</li>
+<li>use Factory to create <code>JamaMatrixLib</code> instead of importing JamaMatrixLib everywhere</li>
+<li>Performance tune up<ul>
+<li>the uninstantiation no longer looks up max timestep (saving 5% - 10% of time in bird model)</li>
+<li><code>Util.debug</code> now uses lazy evaluation kind of approach, so when the debug tag is not set, it will skip   all string concatenation. (saving 5% or more)</li>
+<li><code>FunAppVar.hashCode</code> used to take 4% of cpu time. the implementation is optimized. now hashCode takes very little time. This is important since every HashMap calls hashCode.</li>
+<li><code>FunAppVar.toString</code> is optimized using caching. Now repeated calls will be very fast. </li>
+<li><code>FormulaQuery</code> is removed</li>
+</ul>
+</li>
+<li>Bugfix<ul>
+<li>lexer bug on recognizing id starting with <code>_</code></li>
+</ul>
+</li>
+</ul>
+<h2>BLOG 0.7 (December 27, 2013)</h2>
+<ul>
+<li>Added a special distribution Size, to calculate the size of a Set.</li>
+<li>Poisson now supports a random variable as its argument.</li>
+<li>Renaming distribution: <ul>
+<li>Bernoulli =&gt; BooleanDistrib</li>
+<li>BinaryBernoulliDistrib =&gt; Bernoulli</li>
+</ul>
+</li>
+<li>update support of blog.vim and lexer.py to support syntax updates</li>
+<li>new model: <ul>
+<li>Birthday collision</li>
+<li>Tug-of-war</li>
+</ul>
+</li>
+<li>more robust error handling in syntax</li>
+<li>Syntax highlight style file for emacs (created by Wei Wang)</li>
+<li>Abstract syntax tree is now printed in a nicer format (pprinter)</li>
+<li>maintenance fix for webui<ul>
+<li>web server can now automatically start as a deamon</li>
+<li>added an option (--test) for start-server.sh for testrun of the server</li>
+<li>removed duplicated web/run.sh and use the one in parent directory instead</li>
+</ul>
+</li>
+<li>automatic regression test</li>
+<li>Bug-fix<ul>
+<li>add testing equality of matrix by checking elements 
+  (previous caused problem on copied possible world)</li>
+<li>fix the key removal in linkedHashMap in InstantiationEvalContext 
+  (previously remove the value rather than key)</li>
+<li>fix the incorrect parsing of sub_array expression within LBRACE and RBRACE 
+  (due to a reduce-reduce conflict with array type)</li>
+<li>web server python script can now successfully parse results in scientific 
+  format (e.g. 1E-5)</li>
+</ul>
+</li>
+</ul>
+<h2>BLOG 0.6 (April 5, 2013)</h2>
+<ul>
+<li>Changes to built-in functions<ul>
+<li>Syntax changes: Concat replaced with +</li>
+<li>New operations: ^ (power), =&gt; (implies), &lt;= (leq), &gt;= (geq), min of set, max of set, round</li>
+</ul>
+</li>
+<li>Support for queries on tuple sets, <ul>
+<li>queries of form {f(x) for x: cond(x)} (last supported in v0.3)</li>
+</ul>
+</li>
+<li>New models:<ul>
+<li>background subtraction: for known, unknown numbers of components</li>
+<li>computer vision: and-or trees, projection, scene viewer</li>
+<li>Gaussian mixture model</li>
+<li>stochastic volatility</li>
+</ul>
+</li>
+<li>Miscellaneous bug fixes and improvements, e.g.:<ul>
+<li><code>&lt;</code> now may be used in implicit sets, as may <code>&gt;</code> in conditions of form x &gt; a &amp;&amp; x &lt; b (where a &lt; b) </li>
+<li>UniformVector distribution now consistent with current matrix implementation</li>
+<li>Dirichlet distribution now accepts arguments of form {dims, unnormalized weight}</li>
+</ul>
+</li>
+</ul>
+<h2>BLOG 0.5 (December 23, 2012)</h2>
+<ul>
+<li>Support of array (instead of using RkVector)</li>
+<li>Support arithmetic operators </li>
+<li>Matrix operations supported, +, -, *, and reference to array element </li>
+<li>Reference to distinct objects the same as reference to array element </li>
+<li>Correct MHSampler (old one in blog 0.3 produces incorrect answers with indirect evidence) </li>
+<li>Fixed Particle filtering </li>
+<li>Added sveral new models, including black-jack-one, kalman filter, LDA, AR2 </li>
+<li>Several new distributions, Dirichlet, MultivarGaussian</li>
+</ul>
+<h2>BLOG 0.4 (September 3, 2012)</h2>
+<ul>
+<li>Support of Map data structure;</li>
+<li>Categorical Distribution and TabularCPD using Maps;</li>
+<li>Uniform argument representation in CPD;</li>
+<li>Nested if-then-else in dependency statement;</li>
+<li>Support of Array, Matrix (Real Array)</li>
+<li>Support of arithmetic operators, and linear algebra operators.</li>
+<li>Without causing confusion, <ul>
+<li>"nonrandom" is changed to "fixed", </li>
+<li>"guaranteed" is changed to "distinct";</li>
+</ul>
+</li>
+<li>Complete redesign of parser and semantic translator, 
+  towards parsing efficiency and modularity.</li>
+</ul>
+<h2>BLOG 0.3 (August 14, 2008)</h2>
+<ul>
+<li>Added a module for exact inference using variable elimination (VE).<br />
+  This inference engine can be invoked by running the runblog script 
+  with the option -e ve.VarElimEngine.  It works only on BLOG models 
+  without unknown objects, that is, without number statements.</li>
+<li>Added an implementation of first-order variable elimination with 
+  counting formulas (C-FOVE) as presented by B. Milch, L. S. Zettlemoyer, 
+  M. Haimes, and L. P. Kaelbling at AAAI 2008.  This is an exact 
+  inference algorithm that exploits symmetries between objects to run 
+  faster than the standard VE algorithm.  Like VE, it is currently 
+  applicable only to BLOG models without unknown objects.  It can be 
+  invoked with the flag -e fove.LiftedVarElim.  </li>
+<li>Added the ability to specify undirected dependencies in BLOG model
+  files using parfactors [D. Poole (2003) "Lifted Probabilistic
+  Inference", Proc. 18th IJCAI].  The syntax for parfactors is
+  explained in the brief tutorial on the BLOG web site.  The VE and
+  C-FOVE algorithms operate on both these explicitly specified
+  parfactors, and parfactors constructed automatically from BLOG
+  dependency statements.  The sampling-based inference algorithms
+  (likelihood weighting, etc.) currently ignore any explicitly
+  specified parfactors.</li>
+<li>Added a built-in type Timestep for use in dynamic BLOG (DBLOG) models.<br />
+  This type has guaranteed objects in one-to-one correspondence with the 
+  natural numbers.  Timestep literals are represented in BLOG files as 
+  natural numbers prefixed with an @-sign, such as @0, @1, @2, etc.  By 
+  convention, functions that vary over time take a Timestep as their 
+  last argument; an example is State(Aircraft, Timestep).  The built-in 
+  function Prev maps each timestep to the previous timestep (@0 is 
+  mapped to Model.NULL).  Internally, objects of type Timestep are 
+  represented as instances of class blog.Timestep.  </li>
+<li>This release includes a prototype particle filtering engine for DBLOG 
+  models (developed by Rodrigo de Salvo Braz based on initial code by 
+  Keith Henderson).  It can be invoked with -e blog.engine.ParticleFilter.  If 
+  the useDecayedMCMC property is set to true with -PuseDecayedMCMC=true, 
+  the particle filter will do an iteration of MCMC on each particle at 
+  each time step (the number of MCMC iterations can be changed by setting 
+  the numMoves property).  This allows the filter to recover from poor 
+  initial guesses about atemporal variables.  Specifically, the particle 
+  filter uses a decayed MCMC proposer [B. Marthi, H. Pasula, S. Russell, 
+  and Y. Peres (2002) "Decayed MCMC Filtering", Proc. 18th UAI].  </li>
+<li>Several bug fixes and internal improvements.</li>
+</ul>
+<h2>BLOG 0.2 (December 14, 2007)</h2>
+<ul>
+<li>The functions formerly called "generating functions" are now called
+  "origin functions".  The keyword "origin" is now preferred for
+  declaring these functions (although "generating" is still supported).</li>
+<li>BLOG now includes statements that are both random function declarations 
+  and dependency statements.  That is, you can write something like:
+  random Color ObsColor(Draw d) 
+     ~ TabularCPD[[0.8, 0.2], [0.2, 0.8]](TrueColor(BallDrawn(d)));
+  This statement simultaneously declares ObsColor as a random function 
+  that takes a Draw and returns a Color, and specifies the dependency 
+  model for this function.  </li>
+<li>Functions can now be overloaded.  That is, you can declare several
+  functions with the same name, as long as they have different
+  argument types.  The mapping from identifiers to Function objects
+  is now resolved in FuncAppTerm.checkTypesAndScope, after the types
+  of any logical variables in the function application term have been
+  determined.</li>
+<li>New CPD classes in blog.distrib: BoundedGeometric, CharDistrib, 
+  ChooseFromArgs, Iota, MixtureDistrib, StringEditModel, 
+  StringEditModelWithJumps, UniformVectorDistrib.</li>
+<li>The code for evaluating set expressions can now compactly represent
+  sets that consist of all the objects of a given type except for a
+  few excluded objects.  For instance, suppose we are sampling
+  authors for a paper p without replacement:
+  NthAuthor(p, n) 
+    ~ UniformChoice({Researcher r : !exists NaturalNum m
+                          ((m &lt; n) &amp; (NthAuthor(p, m) = r))});
+  Previously, the set passed to UniformChoice would have been
+  represented by explicitly listing all the Researcher objects that
+  did not appear earlier in the author list.  Thus, the time to
+  compute acceptance probabilities for MCMC moves affecting NthAuthor
+  grew linearly with the number of hypothesized researchers.  The new
+  representation does not depend on the number of hypothesized
+  researchers: it grows only with the length of the author list.
+  This capability is implemented by the POPAppBasedSet class and
+  CompiledSetSpec.getExplicitVersion.</li>
+<li>Lots of other changes "under the hood".  Most notably, the
+  MutablePartialWorld class no longer exists.  Instead, the
+  PartialWorld interface includes mutator methods, and there is a
+  class PartialWorldDiff that can represent a set of changes relative
+  to any underlying PartialWorld object.  Also, ObjectIdentifiers are
+  now handled in a different way.  When you are iterating over the
+  extension of a type that is represented using ObjectIdentifiers,
+  and you get to an object for which no ObjectIdentifier has been
+  created yet, the PartialWorld now creates a new ObjectIdentifier
+  automatically (rather than returning an IdentifierHook object as it
+  did before).  The PartialWorld maintains a distinction between
+  ObjectIdentifiers that have been asserted by the client to exist,
+  and ObjectIdentifiers that have only been used as return values and
+  thus can be removed if necessary.</li>
+<li>Lots of bug fixes.</li>
+</ul>
+<h2>BLOG 0.1.6 (March 16, 2007)</h2>
+<ul>
+<li>Fixed a bug in common/BipartiteMatcher.java that sometimes caused
+  it to return incomplete or non-optimal matches.  Thanks go to the
+  users who reported this bug.</li>
+</ul>
+<h2>BLOG 0.1.5 (January 13, 2006)</h2>
+<ul>
+<li>Changed the parser so it no longer checks for type and scope
+  errors, but leaves this to a separate phase of checking in the main
+  body of the code.  This allows proper handling of tuple set
+  specifications, which cannot be scope-checked in the parser because
+  variables are not declared until after they are used.  It also
+  ensures that statements and formulas that are added
+  programmatically are still checked thoroughly.</li>
+<li>Fixed bug in common/AbstractTupleIterator.java that prevented tuple
+  set specifications from working properly.</li>
+</ul>
+<h2>BLOG 0.1.4 (December 21, 2005)</h2>
+<ul>
+<li>Restored parser's ability to read number statements in the old syntax, 
+  as well as the new syntax introduced in version 0.1.3.  </li>
+<li>Added built-in non-random function Concat that concatenates two strings.</li>
+<li>Corrected bugs in blog.distrib.Geometric.</li>
+<li>Changed name of blog.distrib.BernoulliDistrib to blog.distrib.Bernoulli, 
+  and added ability to specify the success probability as a CPD argument.</li>
+<li>Corrected bug that caused TabularCPD to throw an exception when a list 
+  of explicitly specified probabilities did not sum to one.</li>
+<li>Corrected bug that caused the Boolean values "true" and "false" to be 
+  swapped in the displayed query results.</li>
+<li>Corrected error in blog/SymbolEvidenceStatement.java that prevented it 
+  from compiling under Java 1.4.</li>
+</ul>
+<h2>BLOG 0.1.3 (November 6, 2005)</h2>
+<ul>
+<li>Changed the syntax for number statements in an effort to make them
+  clearer.  For example, the number statement for radar blips
+  generated by a given aircraft at a given time step is now:
+   #Blip(Source = a, Time = t) ~ DetectionDistrib(State(a, t));
+  We believe this is much clearer than the old syntax, which was:
+   #Blip: (Source, Time) -&gt; (a, t) ~ DetectionDistrib(State(a, t));
+  Note that the syntax for number statements with no generating objects 
+  (such as #Ball ~ Poisson[6]) is unchanged.</li>
+<li>Non-random constant and function definitions can now contain other
+  non-random constants and functions.  The inference engine checks
+  that these definitions are acyclic.</li>
+<li>Matrices that are written out in brackets can now contain arbitrary 
+  number-valued terms, not just numbers.</li>
+<li>The observed value of a term in an observation statement can now be any 
+  term, not just a constant symbol.  </li>
+<li>Added several new CPDs to the blog.distrib package: Binomial,
+  NegativeBinomial, UniformReal, Exponential, Gamma, and Beta.</li>
+<li>Replaced blog.distrib.MultinomialDistrib with a new
+  blog.distrib.Categorical CPD, which allows the parameter vector to
+  be given as an argument.</li>
+<li>Added a new file, examples/aircraft-wandering.mblog, containing a
+  simplified version of the aircraft tracking model from [Milch et
+  al., IJCAI 2005].</li>
+<li>The command line options that direct query results to files work now.</li>
+<li>Recursive number statements no longer cause stack overflow errors.</li>
+</ul>
+<h2>BLOG 0.1.2 (September 27, 2005)</h2>
+<ul>
+<li>Fixed numerical inaccuracy in the getProb method in
+  blog/distrib/Poisson.java.  It now avoids overflow by calling
+  getLogProb and exponentiating the result.  This problem was hidden
+  in BLOG 0.1, but in version 0.1.1 it caused Metropolis-Hastings
+  sampling with the UrnBallsSplitMerge proposal distribution to yield
+  extremely bad results.</li>
+</ul>
+<h2>BLOG 0.1.1  (September 21, 2005)</h2>
+<ul>
+<li>Added three new examples: </li>
+<li>a university example often used for explaining probabilistic 
+    relational models (examples/grades.{mblog,eblog,qblog}); </li>
+<li>a hidden Markov model (examples/hmm.{mblog,eblog,qblog}); </li>
+<li>a Gaussian mixture model (examples/mixture.{mblog,eblog,qblog}).</li>
+<li>It is now possible to declare a nonrandom constant or function
+  without specifying its interpretation, and then give its
+  interpretation later.  This allows a relational skeleton to be
+  specified separately from the model.  See examples/grades.mblog and
+  examples/grades.eblog.</li>
+<li>Added two implementations of the FunctionInterp inferface:
+  ListInterp and TabularInterp.  These allow you to specify the
+  interpretation of a non-random function (on a finite set of
+  argument tuples) explicitly in a BLOG file.  This is useful for
+  specifying relational skeletons.</li>
+<li>You no longer need to use parentheses after a CPD name when it
+  takes no arguments.</li>
+<li>Added != operator, and infix operators &lt;, &gt;, &lt;=, &gt;= for the
+  corresponding built-in functions</li>
+<li>Added built-in Succ and Pred functions on natural numbers.</li>
+<li>TabularCPD now allows integers and natural numbers as the child
+  type, defining a distribution over a prefix of the natural numbers.</li>
+<li>Added character literals (such as 'a'), improved handling of escape
+  sequences in string and character literals (now same as Java),
+  implemented concatenation of consecutive string literals (as in C).</li>
+<li>Fixed bug whereby compiled versions of set specifications might be
+  incorrect if additional number statements occurred after the set
+  specification in an input file.</li>
+<li>Fixed bug whereby RejectionSampler wouldn't instantiate basic RVs
+  corresponding to random constants introduced in evidence
+  statements.</li>
+<li>Fixed bug in sorting of histogram in query outputs.</li>
+<li>Built-in functions now handle null arguments properly.</li>
+<li>Makefiles no longer require GNU make.</li>
+</ul>
+<h2>BLOG 0.1 (September 10, 2005)</h2>
+<p>Initial release</p>
+</section>
+
+</body>
+</html>

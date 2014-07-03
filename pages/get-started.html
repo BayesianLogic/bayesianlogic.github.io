@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Get-started</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">BLOG Programming Language </a></h1>
+                <nav><ul>
+                    <li><a href="../">BLOG</a></li>
+                    <li><a href="../pages/documentation.html">Documentation</a></li>
+                    <li><a href="../pages/download.html">Download</a></li>
+                    <li><a href="../pages/contributors.html">Contributors</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Get-started</h1>
+    <h1>Downloading and Installing</h1>
+<p>Get the latest version of BLOG from the 
+<a href="../pages/download.html">download page</a>. </p>
+<h2>Prerequsite</h2>
+<ul>
+<li>Java 1.6+</li>
+<li>all operating systems. (Windows XP/7/8, MacOSX, Linux)</li>
+</ul>
+<h2>Installing</h2>
+<p>Running BLOG doesnot require install. However, you may use the following script to 
+install it on your system. It will be more convenient to run BLOG.</p>
+<p>Alternatively, you may directly compile from source code by 
+(you will need sbt installed, check <a href="../pages/developers-guide.html">download page</a> for more details). </p>
+<div class="highlight"><pre><span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">compile</span>
+<span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">stage</span>
+</pre></div>
+
+
+<!-- *** Placeholder for installation *** -->
+
+<h1>Running BLOG</h1>
+<p>Open your terminal and locate to your BLOG main directory.
+The BLOG includes a few examples. </p>
+<p>On Linux/Mac, the following command will run the Burglary example. </p>
+<div class="highlight"><pre><span class="n">bin</span><span class="o">/</span><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+</pre></div>
+
+
+<p>If you already installed BLOG, you may try without <code>bin/</code></p>
+<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+</pre></div>
+
+
+<p>On Window, the corresponding command is (You may need to properly set your JAVA_HOME and PATH environment variable for Java.)</p>
+<div class="highlight"><pre><span class="n">blog</span><span class="p">.</span><span class="n">bat</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+</pre></div>
+
+
+<p>The general command is </p>
+<div class="highlight"><pre><span class="nx">blog</span> <span class="o">&lt;</span><span class="nx">filename_of_blog_model</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>BLOG system accepts a list of commandline options, such as the number samples
+used in its underlying sampling engine. The more samples, the more accurate
+result it can produce. Use the following to run Burglary example with 1 million 
+samples. </p>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+</pre></div>
+
+
+<p>The following will run a simple Hidden Markov Model for genetic sequences. 
+It uses particle filtering algorithm to make inference. </p>
+<div class="highlight"><pre><span class="n">dblog</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
+</pre></div>
+
+
+<p>The full list of commandline options are described in <a href="../pages/users-manual.html">BLOG User Manual</a></p>
+<h1>Where to go from here</h1>
+<ul>
+<li><a href="../pages/users-manual.html">User manual</a>: a manual for BLOG system, including setting and tuning all options. </li>
+<li><a href="xxxxx">BLOG language reference</a>: a reference for BLOG language, including its syntax and semantics. </li>
+<li><a href="xxx">Probabilistic modelling using BLOG</a>: a tutorial textbook for modelling using BLOG. It includes introduction to BLOG language, and how to use it to solve real application problems. </li>
+<li><a href="../pages/developers-guide.html">Developer guide</a>: how to contribute to the BLOG project. </li>
+</ul>
+<h1>Community</h1>
+<p>You may subscribe to the <a href="xxx">Mailing list for BLOG users</a>.
+If you want to contribute to BLOG, please refer to <a href="../pages/developers-guide.html">Developer guide</a>.</p>
+</section>
+
+</body>
+</html>
