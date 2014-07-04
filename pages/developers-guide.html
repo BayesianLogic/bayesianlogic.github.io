@@ -32,12 +32,16 @@
 <li>Follow the Code Style Guide. Before sending in your pull request, run sbt/sbt scalastyle to validate the style.</li>
 <li>Large files (e.g. data files &gt; 10MB, any output file, generated pdf etc) should not be added to git repo.</li>
 <li>Update the documentation (in the docs folder) if you add a new feature or commandline option.</li>
+<li>test your code before submit pull request. </li>
 </ul>
 <h1>Code style</h1>
 <p>Use <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html">google java style</a>
  * 2 spaces for indent
  * no long lines
  * Please use \n for line terminator! </p>
+<h1>Build Tool</h1>
+<p>BLOG uses <a href="http://www.scala-sbt.org/">sbt</a> for building and releasing packages. 
+The minimal requirement is sbt version 0.13.</p>
 <h1>Eclipse</h1>
 <h3>To set up Eclipse for BLOG development:</h3>
 <ol>
@@ -76,22 +80,27 @@
 
 
 <p>The second command is to ensure you can run <code>blog</code> and <code>iblog</code> in development environment.</p>
+<h1>Unit Test</h1>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">test</span>
+</pre></div>
+
+
 <h1>Package</h1>
 <p>To make a release</p>
 <div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">compile</span>
   <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">html</span>
-  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">universal</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">universal:package</span><span class="o">-</span><span class="n">bin</span>
 </pre></div>
 
 
 <h2>Generate Debian installation package</h2>
-<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">debian</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">debian:package</span><span class="o">-</span><span class="n">bin</span>
 </pre></div>
 
 
 <h2>Generate Windows Installation package</h2>
 <p>You must have WIX installed. Obtain it from http://wixtoolset.org/.</p>
-<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">windows</span><span class="o">:</span><span class="n">package</span><span class="o">-</span><span class="n">bin</span>
+<div class="highlight"><pre>  <span class="n">sbt</span><span class="o">/</span><span class="n">sbt</span> <span class="n">windows:package</span><span class="o">-</span><span class="n">bin</span>
 </pre></div>
 
 
@@ -103,7 +112,7 @@
 <p>https://help.github.com/articles/using-pull-requests</p>
 <h2>How to use Pull Requests</h2>
 <p>You should create a <em>feature branch</em> whenever you start to work on something. This is the branch you will work off for the entire development cycle. When you finish development on the feature, you will merge this branch back into master. This way, we can ensure that our master branch is always in a good state, and never has anything that is only partially complete.</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature_name</span> 
+<div class="highlight"><pre><span class="nv">$</span> <span class="nv">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature_name</span> 
 </pre></div>
 
 
@@ -122,7 +131,7 @@
 
 
 <p>When you do push your code after a rebase, you will have to do so with</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">force</span>
+<div class="highlight"><pre><span class="n">git</span> <span class="nb">push</span> <span class="o">--</span><span class="n">force</span>
 </pre></div>
 
 

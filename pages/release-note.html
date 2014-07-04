@@ -22,7 +22,52 @@
         </header><!-- /#banner -->
 <section id="content" class="body">
     <h1 class="entry-title">Release Note</h1>
-    <h2>BLOG 0.8 (June 13, 2014)</h2>
+    <h2>BLOG 0.9 (July 4, 2014)</h2>
+<ul>
+<li>Introduce an interactive shell and debugger</li>
+<li>Syntax revise using single = or ~ for fixed function and random function respectively</li>
+<li>Add case-in expression<ul>
+<li>removed TabularCPD</li>
+</ul>
+</li>
+<li>Support general expression in both fixed function and random function<ul>
+<li>any expression do not contain random/origin symbol or distribution call</li>
+<li>added support for if-then-else in fixed function</li>
+<li>case-in in fixed function</li>
+</ul>
+</li>
+<li>Unified set expression<ul>
+<li>removed implicitset, all use tuple set of explicit set</li>
+<li>changed UniformChoice to expect a set</li>
+<li>removed '#' for number expression, use size() instead</li>
+<li>removed Iota distribution, add iota builtin function</li>
+</ul>
+</li>
+<li>Robust parsing of BLOG files<ul>
+<li>added handling of error syntax and print detailed syntax errors</li>
+<li>correctly identify line/column number information </li>
+<li>use jflex 1.6 and java_cup 0.11b</li>
+</ul>
+</li>
+<li>Support loadMatrix from csvfile to fixed function</li>
+<li>Redesigned distribution interface<ul>
+<li>all distributions implement blog.distrib.CondProbDistrib interface</li>
+<li>now every distribution automatically support random/fixed parameters, no extra handling inside distribution</li>
+<li>changed major distribution implementaions accordingly</li>
+</ul>
+</li>
+<li>Switch to sbt as the build platform, it supports compile, run, native package (into universal zip, debian files, windows installation msi), generate html doc</li>
+<li>added support to automatic publish to bayesianlogic.github.io  </li>
+<li>Internal changes<ul>
+<li>removed blog.model.Clause, use blog.model.DistributionSpec instead</li>
+<li>use Queries for query container instead of List<Query></li>
+<li>ParticleFIlter and LiuWestFiler improves by removing unused DecayedMC</li>
+<li>removed obsolete code</li>
+<li>fixed function call symbol resolution problem</li>
+</ul>
+</li>
+</ul>
+<h2>BLOG 0.8 (June 13, 2014)</h2>
 <ul>
 <li>Implemented a correct version of PF with sliding window, uninstantiating the previous timestep. The memory issue with PF is solved. PF used to consume memory linear to time step, now it is increasing slightly only due to accumulation of query result.</li>
 <li>Added LiuWestFilter. It works better than plain bootstrap PF on dynamic models with static parameters.</li>

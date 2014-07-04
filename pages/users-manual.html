@@ -72,41 +72,41 @@ The model file is <code>example/burglary.blog</code>, the same as below.</p>
 37
 38
 39
-40</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Burglary</span> <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
+40</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Burglary</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
 
-<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Earthquake</span> <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.002</span><span class="p">);</span>
+<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Earthquake</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.002</span><span class="p">);</span>
 
 <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Alarm</span> <span class="o">{</span>
   <span class="k">if</span> <span class="n">Burglary</span> <span class="k">then</span>
     <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span>
-      <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
     <span class="k">else</span>
-      <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.94</span><span class="p">)</span>
+      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.94</span><span class="p">)</span>
   <span class="k">else</span>
     <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span>
-      <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.29</span><span class="p">)</span>
+      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.29</span><span class="p">)</span>
     <span class="k">else</span>
-      <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  
+      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  
 <span class="o">}</span><span class="p">;</span>
 
 <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">JohnCalls</span> 
   <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span> 
-    <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
   <span class="k">else</span> 
-    <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
+    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
 
 <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">MaryCalls</span>
   <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span>
-    <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
   <span class="k">else</span>
-    <span class="o">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
+    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
 
 <span class="cm">/* Evidence for the burglary model saying that both</span>
 <span class="cm"> * John and Mary called.  Given this evidence, the posterior probability</span>
 <span class="cm"> * of Burglary is 0.284 (see p. 505 of &quot;AI: A Modern Approach&quot;, 2nd ed.).</span>
 <span class="cm"> */</span>
-<span class="k">obs</span> <span class="n">JohnCalls</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="k">obs</span> <span class="n">MaryCalls</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="k">obs</span> <span class="n">JohnCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="k">obs</span> <span class="n">MaryCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
 
 <span class="cm">/* Query for the burglary model asking whether Burglary</span>
 <span class="cm"> * is true.</span>
@@ -118,30 +118,30 @@ The model file is <code>example/burglary.blog</code>, the same as below.</p>
 <p>There is one query described in the model. It is asking whether there is burglary.
 By running the model, we expect to obtain the probability of burglary event.</p>
 <p>Use the following command to run the model.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>If you do not have blog, you may run it with (after unzip universal package)</p>
-<div class="highlight"><pre><span class="n">bin</span><span class="o">/</span><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">bin</span><span class="sr">/blog example/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>By default, BLOG uses Likelihood-weighting algorithm to infer the posterior probability.
 It will draw 50,000 samples and output a probability.
 One can request 1 million samples by issuing the following command.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>One can request to use the Metropolis-Hasting algorithm (as described in Milch et al 2006).</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">s</span> <span class="n">blog</span><span class="p">.</span><span class="n">sample</span><span class="p">.</span><span class="n">MHSampler</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">s</span> <span class="n">blog</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">MHSampler</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <h1>Commandline options</h1>
 <p>The general form of blog command is</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file1</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">blog</span> <span class="n">file2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file3</span><span class="o">&gt;</span> <span class="p">...]</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file1</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">blog</span> <span class="n">file2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file3</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 
 
@@ -153,7 +153,7 @@ One can request 1 million samples by issuing the following command.</p>
   Initialize the random seed based on the clock time. If this flag is not given, the program uses a fixed random seed so its behavior is reproducible. Default: false.<br />
   For example:</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">r</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">r</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -167,7 +167,7 @@ One can request 1 million samples by issuing the following command.</p>
 <code>-e blog.engine.LiuWestFilter</code><br />
   For example, the following command uses particle filter to run a Hidden Markov Model.</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -177,7 +177,7 @@ One can request 1 million samples by issuing the following command.</p>
   It is used to control the accuracy of the inference. Default, 10,000. <br />
   For example, to run the burglary model with 1 million samples.</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -246,14 +246,27 @@ One can request 1 million samples by issuing the following command.</p>
   It can accept an additional variable CLASSPATH to setup classpath of user provided distribution and library functions. For example, </p>
 </li>
 </ul>
-<div class="highlight"><pre><span class="n">CLASSPATH</span><span class="o">=</span><span class="n">userdir</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">CLASSPATH</span><span class="o">=</span><span class="n">userdir</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+</pre></div>
+
+
+<h1>Checking and validating BLOG syntax</h1>
+<p>Sometimes one might make a small typo in the BLOG program. 
+<code>bloglint</code> is a tool provided in the package to validate the syntax of a BLOG program. 
+It will point out syntax errors, and output an abstract syntax tree for the portion it can understand. </p>
+<div class="highlight"><pre><span class="n">bloglint</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>For example, the following command will check the syntax of <code>example/burglary.blog</code>.</p>
+<div class="highlight"><pre><span class="n">bloglint</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <h1>Running dynamic models</h1>
 <p>For dynamic models (models with <code>Timestep</code>), one can use bootstrap particle filter. 
 Bootstrap particle filter is an approximate algorithm for making inference about dynamic probabilistic model with general distributions. The following command runs a particle filter for a hidden Markov model.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -319,42 +332,42 @@ Bootstrap particle filter is an approximate algorithm for making inference about
 <span class="k">distinct</span> <span class="n">Output</span> <span class="n">ResultA</span><span class="p">,</span> <span class="n">ResultC</span><span class="p">,</span> <span class="n">ResultG</span><span class="p">,</span> <span class="n">ResultT</span><span class="p">;</span>
 
 <span class="k">random</span> <span class="n">State</span> <span class="nf">S</span><span class="p">(</span><span class="kt">Timestep</span> <span class="n">t</span><span class="p">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="o">@</span><span class="mi">0</span> <span class="k">then</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="o">@</span><span class="mi">0</span> <span class="k">then</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span>
                  <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.2</span><span class="p">,</span>
                  <span class="n">G</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span>
                  <span class="n">T</span> <span class="o">-&gt;</span> <span class="mf">0.4</span><span class="o">}</span><span class="p">)</span>
-    <span class="k">else</span> <span class="o">~</span> <span class="nf">TabularCPD</span><span class="p">(</span>
-      <span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="k">else</span> <span class="p">~</span> <span class="nf">TabularCPD</span><span class="p">(</span>
+      <span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span>
                            <span class="n">G</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="o">}</span><span class="p">),</span>
-       <span class="n">C</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span> 
+       <span class="n">C</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span> 
                            <span class="n">G</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="o">}</span><span class="p">),</span>
-       <span class="n">G</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> 
+       <span class="n">G</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> 
                            <span class="n">G</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="o">}</span><span class="p">),</span>
-       <span class="n">T</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> 
+       <span class="n">T</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">C</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> 
                            <span class="n">G</span> <span class="o">-&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="mf">0.1</span><span class="o">}</span><span class="p">)</span><span class="o">}</span><span class="p">,</span>
       <span class="nf">S</span><span class="p">(</span><span class="nf">prev</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
 <span class="o">}</span><span class="p">;</span>
 
 <span class="k">random</span> <span class="n">Output</span> <span class="nf">O</span><span class="p">(</span><span class="kt">Timestep</span> <span class="n">t</span><span class="p">)</span>
-   <span class="o">~</span> <span class="nf">TabularCPD</span><span class="p">(</span>
-     <span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
+   <span class="p">~</span> <span class="nf">TabularCPD</span><span class="p">(</span>
+     <span class="o">{</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
                           <span class="n">ResultG</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultT</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="o">}</span><span class="p">),</span>
-      <span class="n">C</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="p">,</span> 
+      <span class="n">C</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="p">,</span> 
                           <span class="n">ResultG</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultT</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="o">}</span><span class="p">),</span>
-      <span class="n">G</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
+      <span class="n">G</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
                           <span class="n">ResultG</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">ResultT</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="o">}</span><span class="p">),</span>
-      <span class="n">T</span> <span class="o">-&gt;</span> <span class="o">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
+      <span class="n">T</span> <span class="o">-&gt;</span> <span class="p">~</span> <span class="nf">Categorical</span><span class="p">(</span><span class="o">{</span><span class="n">ResultA</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultC</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> 
                           <span class="n">ResultG</span> <span class="o">-&gt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">ResultT</span> <span class="o">-&gt;</span> <span class="mf">0.85</span><span class="o">}</span><span class="p">)</span><span class="o">}</span><span class="p">,</span>
      <span class="nf">S</span><span class="p">(</span><span class="n">t</span><span class="p">));</span>
 
 <span class="cm">/* Evidence for the Hidden Markov Model.</span>
 <span class="cm"> */</span>
 
-<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">0</span><span class="p">)</span> <span class="o">=</span> <span class="n">ResultC</span><span class="p">;</span>
-<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">ResultA</span><span class="p">;</span>
-<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">ResultA</span><span class="p">;</span>
-<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">ResultA</span><span class="p">;</span>
-<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">ResultG</span><span class="p">;</span>
+<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">0</span><span class="p">)</span> <span class="p">=</span> <span class="n">ResultC</span><span class="p">;</span>
+<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">ResultA</span><span class="p">;</span>
+<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">ResultA</span><span class="p">;</span>
+<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">ResultA</span><span class="p">;</span>
+<span class="k">obs</span> <span class="nf">O</span><span class="p">(</span><span class="o">@</span><span class="mi">4</span><span class="p">)</span> <span class="p">=</span> <span class="n">ResultG</span><span class="p">;</span>
 
 <span class="cm">/* Queries for the Hiddem Markov Model, given the evidence.</span>
 <span class="cm"> * Note that we can query S(5) even though our observations only</span>
@@ -373,7 +386,7 @@ Bootstrap particle filter is an approximate algorithm for making inference about
 <p>Note when using particle filtering or Liu-West filter, BLOG is answering the query at the query time.
 For example, <code>query S(@2)</code> will be answered after all evidence at <code>Timestep</code> 2. It is expected to give probability of the state at 2nd <code>Timestep</code> given all evidence at <code>Timestep</code> 0, 1, and 2.</p>
 <p>To specify the number of particles, use <code>-n</code>. By default, BLOG uses 50,000 particles. The following command runs a particle filter with 100,000 particles.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100000</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100000</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -381,7 +394,7 @@ For example, <code>query S(@2)</code> will be answered after all evidence at <co
 <p>If your BLOG model contains static variables (random functions defined on types other than <code>Timestep</code>). You may consider using the Liu-West filter. The current implementation of Liu-West filter only work on scalar continuous static variables. To switch to Liu-West filter, use the option <code>-e LiuWestFilter</code></p>
 <p>BLOG requires a parameter <code>rho</code> for the degree of pertubation. Defaut is 0.95. It can be set using <code>-P rho=[number]</code>. The number should be in (0, 1]. 1.0 means no pertubation, i.e. plain particle filtering. </p>
 <p>The following command runs Liu-West filter on a simple auto-regressive model. </p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">LiuWestFilter</span> <span class="o">-</span><span class="n">P</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.98</span> <span class="n">example</span><span class="o">/</span><span class="n">ar1</span><span class="p">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">LiuWestFilter</span> <span class="o">-</span><span class="n">P</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.98</span> <span class="n">example</span><span class="o">/</span><span class="n">ar1</span><span class="o">.</span><span class="n">dblog</span>
 </pre></div>
 
 
