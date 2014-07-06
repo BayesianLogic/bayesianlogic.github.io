@@ -65,53 +65,39 @@ The model file is <code>example/burglary.blog</code>, the same as below.</p>
 30
 31
 32
-33
-34
-35
-36
-37
-38
-39
-40</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Burglary</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
+33</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Burglary</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
 
-<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Earthquake</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.002</span><span class="p">);</span>
+    <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Earthquake</span> <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.002</span><span class="p">);</span>
 
-<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Alarm</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="n">Burglary</span> <span class="k">then</span>
-    <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span>
-      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
-    <span class="k">else</span>
-      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.94</span><span class="p">)</span>
-  <span class="k">else</span>
-    <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span>
-      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.29</span><span class="p">)</span>
-    <span class="k">else</span>
-      <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  
-<span class="o">}</span><span class="p">;</span>
+    <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">Alarm</span> <span class="p">~</span>
+      <span class="k">if</span> <span class="n">Burglary</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+        <span class="k">else</span>  <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.94</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="k">if</span> <span class="n">Earthquake</span> <span class="k">then</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.29</span><span class="p">)</span>
+        <span class="k">else</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span>
 
-<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">JohnCalls</span> 
-  <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span> 
-    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
-  <span class="k">else</span> 
-    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
+    <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">JohnCalls</span> <span class="p">~</span>
+      <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+      <span class="k">else</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
 
-<span class="k">random</span> <span class="kt">Boolean</span> <span class="n">MaryCalls</span>
-  <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span>
-    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
-  <span class="k">else</span>
-    <span class="p">~</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
+    <span class="k">random</span> <span class="kt">Boolean</span> <span class="n">MaryCalls</span> <span class="p">~</span>
+      <span class="k">if</span> <span class="n">Alarm</span> <span class="k">then</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+      <span class="k">else</span> <span class="nf">BooleanDistrib</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
 
-<span class="cm">/* Evidence for the burglary model saying that both</span>
-<span class="cm"> * John and Mary called.  Given this evidence, the posterior probability</span>
-<span class="cm"> * of Burglary is 0.284 (see p. 505 of &quot;AI: A Modern Approach&quot;, 2nd ed.).</span>
-<span class="cm"> */</span>
-<span class="k">obs</span> <span class="n">JohnCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="k">obs</span> <span class="n">MaryCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="cm">/* Evidence for the burglary model saying that both </span>
+<span class="cm">     * John and Mary called.  Given this evidence, the posterior probability </span>
+<span class="cm">     * of Burglary is 0.284 (see p. 505 of &quot;AI: A Modern Approach&quot;, 2nd ed.).</span>
+<span class="cm">     */</span>
 
-<span class="cm">/* Query for the burglary model asking whether Burglary</span>
-<span class="cm"> * is true.</span>
-<span class="cm"> */</span>
-<span class="k">query</span> <span class="n">Burglary</span><span class="p">;</span>
+    <span class="k">obs</span> <span class="n">JohnCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">obs</span> <span class="n">MaryCalls</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="cm">/* Query for the burglary model asking whether Burglary </span>
+<span class="cm">     * is true.</span>
+<span class="cm">     */</span>
+
+    <span class="k">query</span> <span class="n">Burglary</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
@@ -128,13 +114,46 @@ By running the model, we expect to obtain the probability of burglary event.</p>
 
 
 <p>By default, BLOG uses Likelihood-weighting algorithm to infer the posterior probability.
-It will draw 50,000 samples and output a probability.
-One can request 1 million samples by issuing the following command.</p>
+It will draw 10,000 samples and output a probability. The following is a typical output. </p>
+<div class="highlight"><pre>    <span class="n">Running</span> <span class="n">BLOG</span>
+    <span class="n">Using</span> <span class="n">fixed</span> <span class="n">random</span> <span class="n">seed</span> <span class="k">for</span> <span class="n">repeatability</span><span class="o">.</span>
+    <span class="o">............................................</span>
+    <span class="n">Constructing</span> <span class="n">inference</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">SamplingEngine</span>
+    <span class="n">Constructing</span> <span class="n">sampler</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">LWSampler</span>
+    <span class="n">Evidence:</span> <span class="p">[</span><span class="n">JohnCalls</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span> <span class="n">MaryCalls</span> <span class="o">=</span> <span class="n">true</span><span class="p">]</span>
+    <span class="n">Query:</span> <span class="p">[</span><span class="n">Burglary</span><span class="p">]</span>
+    <span class="n">Running</span> <span class="k">for</span> <span class="mi">10000</span> <span class="n">samples</span><span class="o">...</span>
+    <span class="n">Query</span> <span class="n">Reporting</span> <span class="n">interval</span> <span class="n">is</span> <span class="mi">10000</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">1000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.437</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">2000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.625</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">3000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.707</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">4000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.775</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">5000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.825</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">6000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.887</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">7000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.957</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">8000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.997</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">9000</span><span class="o">.</span>     <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">1.024</span> <span class="n">s</span><span class="o">.</span>
+    <span class="n">Samples</span> <span class="n">done:</span> <span class="mi">10000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">1.05</span> <span class="n">s</span><span class="o">.</span>
+    <span class="o">========</span>  <span class="n">LW</span> <span class="n">Trial</span> <span class="n">Stats</span> <span class="o">=========</span>
+    <span class="n">Log</span> <span class="n">of</span> <span class="n">average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="o">-</span><span class="mf">6.307847922891953</span>
+    <span class="n">Average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="mf">0.0018219499999999767</span>
+    <span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="mf">1.0</span>
+    <span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">running</span> <span class="n">avg</span><span class="p">,</span> <span class="n">all</span> <span class="n">trials</span><span class="p">):</span> <span class="mf">1.0</span>
+    <span class="o">========</span> <span class="n">Query</span> <span class="n">Results</span> <span class="o">=========</span>
+    <span class="n">Number</span> <span class="n">of</span> <span class="n">samples:</span> <span class="mi">10000</span>
+    <span class="n">Distribution</span> <span class="n">of</span> <span class="nb">values</span> <span class="k">for</span> <span class="n">Burglary</span>
+        <span class="n">false</span>   <span class="mf">0.7233733088174801</span>
+        <span class="n">true</span>    <span class="mf">0.2766266911825274</span>
+    <span class="o">========</span> <span class="n">Done</span> <span class="o">========</span>
+</pre></div>
+
+
+<p>It is possible to request 1 million samples by issuing the following command.</p>
 <div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
 
-<p>One can request to use the Metropolis-Hasting algorithm (as described in Milch et al 2006).</p>
+<p>Alternative algorithms are available. To use the Metropolis-Hasting algorithm (as described in Milch et al 2006):</p>
 <div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">s</span> <span class="n">blog</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">MHSampler</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
 </pre></div>
 
@@ -379,7 +398,7 @@ Bootstrap particle filter is an approximate algorithm for making inference about
 
 <p>Note when using particle filtering or Liu-West filter, BLOG is answering the query at the query time.
 For example, <code>query S(@2)</code> will be answered after all evidence at <code>Timestep</code> 2. It is expected to give probability of the state at 2nd <code>Timestep</code> given all evidence at <code>Timestep</code> 0, 1, and 2.</p>
-<p>To specify the number of particles, use <code>-n</code>. By default, BLOG uses 50,000 particles. The following command runs a particle filter with 100,000 particles.</p>
+<p>To specify the number of particles, use <code>-n</code>. By default, BLOG uses 10,000 particles. The following command runs a particle filter with 100,000 particles.</p>
 <div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100000</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
 </pre></div>
 
