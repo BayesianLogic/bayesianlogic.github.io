@@ -34,7 +34,7 @@
 <p>You may choose to install the pre-built version for your operating system. 
 You may also running BLOG from the universal package, which doesnot require install. </p>
 <p>On linux/Mac, after unzip the universal package, please open terminal and run the following commands.</p>
-<div class="highlight"><pre><span class="nb">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">bin</span><span class="o">/*</span>
+<div class="highlight"><pre><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">bin</span><span class="o">/*</span>
 </pre></div>
 
 
@@ -51,22 +51,22 @@ You may also running BLOG from the universal package, which doesnot require inst
 <p>Open your terminal and locate to your BLOG main directory.
 The BLOG includes a few examples. </p>
 <p>On Linux/Mac, the following command will run the Burglary example. </p>
-<div class="highlight"><pre><span class="n">bin</span><span class="sr">/blog example/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">bin</span><span class="o">/</span><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>If you already installed BLOG, you may try without <code>bin/</code></p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>On Window, the corresponding command is (You may need to properly set your JAVA_HOME and PATH environment variable for Java.)</p>
-<div class="highlight"><pre><span class="n">blog</span><span class="o">.</span><span class="n">bat</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span><span class="p">.</span><span class="n">bat</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>The general command is </p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="sr">&lt;filename_of_blog_model&gt;</span>
+<div class="highlight"><pre><span class="nx">blog</span> <span class="o">&lt;</span><span class="nx">filename_of_blog_model</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -74,13 +74,13 @@ The BLOG includes a few examples. </p>
 used in its underlying sampling engine. The more samples, the more accurate
 result it can produce. Use the following to run Burglary example with 1 million 
 samples. </p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>The following will run a simple Hidden Markov Model for genetic sequences. 
 It uses particle filtering algorithm to make inference. </p>
-<div class="highlight"><pre><span class="n">dblog</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">dblog</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -94,5 +94,15 @@ It uses particle filtering algorithm to make inference. </p>
 </ul>
 </section>
 
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-52739552-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
 </body>
 </html>

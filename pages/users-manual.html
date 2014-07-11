@@ -104,63 +104,63 @@ The model file is <code>example/burglary.blog</code>, the same as below.</p>
 <p>There is one query described in the model. It is asking whether there is burglary.
 By running the model, we expect to obtain the probability of burglary event.</p>
 <p>Use the following command to run the model.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>If you do not have blog installed, you may run it with (after unzip universal package). </p>
-<div class="highlight"><pre><span class="n">bin</span><span class="sr">/blog example/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">bin</span><span class="o">/</span><span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>By default, BLOG uses Likelihood-weighting algorithm to infer the posterior probability.
 It will draw 10,000 samples and output a probability. The following is a typical output. </p>
 <div class="highlight"><pre><span class="n">Running</span> <span class="n">BLOG</span>
-<span class="n">Using</span> <span class="n">fixed</span> <span class="n">random</span> <span class="n">seed</span> <span class="k">for</span> <span class="n">repeatability</span><span class="o">.</span>
-<span class="o">............................................</span>
-<span class="n">Constructing</span> <span class="n">inference</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">SamplingEngine</span>
-<span class="n">Constructing</span> <span class="n">sampler</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">LWSampler</span>
-<span class="n">Evidence:</span> <span class="p">[</span><span class="n">JohnCalls</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span> <span class="n">MaryCalls</span> <span class="o">=</span> <span class="n">true</span><span class="p">]</span>
-<span class="n">Query:</span> <span class="p">[</span><span class="n">Burglary</span><span class="p">]</span>
-<span class="n">Running</span> <span class="k">for</span> <span class="mi">10000</span> <span class="n">samples</span><span class="o">...</span>
+<span class="n">Using</span> <span class="n">fixed</span> <span class="n">random</span> <span class="n">seed</span> <span class="k">for</span> <span class="n">repeatability</span><span class="p">.</span>
+<span class="p">............................................</span>
+<span class="n">Constructing</span> <span class="n">inference</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">SamplingEngine</span>
+<span class="n">Constructing</span> <span class="n">sampler</span> <span class="n">of</span> <span class="n">class</span> <span class="n">blog</span><span class="p">.</span><span class="n">sample</span><span class="p">.</span><span class="n">LWSampler</span>
+<span class="nl">Evidence:</span> <span class="p">[</span><span class="n">JohnCalls</span> <span class="o">=</span> <span class="nb">true</span><span class="p">,</span> <span class="n">MaryCalls</span> <span class="o">=</span> <span class="nb">true</span><span class="p">]</span>
+<span class="nl">Query:</span> <span class="p">[</span><span class="n">Burglary</span><span class="p">]</span>
+<span class="n">Running</span> <span class="k">for</span> <span class="mi">10000</span> <span class="n">samples</span><span class="p">...</span>
 <span class="n">Query</span> <span class="n">Reporting</span> <span class="n">interval</span> <span class="n">is</span> <span class="mi">10000</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">1000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.437</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">2000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.625</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">3000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.707</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">4000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.775</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">5000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.825</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">6000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.887</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">7000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.957</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">8000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">0.997</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">9000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">1.024</span> <span class="n">s</span><span class="o">.</span>
-<span class="n">Samples</span> <span class="n">done:</span> <span class="mi">10000</span><span class="o">.</span>    <span class="n">Time</span> <span class="n">elapsed:</span> <span class="mf">1.05</span> <span class="n">s</span><span class="o">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">1000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.437</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">2000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.625</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">3000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.707</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">4000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.775</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">5000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.825</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">6000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.887</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">7000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.957</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">8000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">0.997</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">9000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">1.024</span> <span class="n">s</span><span class="p">.</span>
+<span class="n">Samples</span> <span class="n">done</span><span class="o">:</span> <span class="mf">10000.</span>    <span class="n">Time</span> <span class="n">elapsed</span><span class="o">:</span> <span class="mf">1.05</span> <span class="n">s</span><span class="p">.</span>
 <span class="o">========</span>  <span class="n">LW</span> <span class="n">Trial</span> <span class="n">Stats</span> <span class="o">=========</span>
-<span class="n">Log</span> <span class="n">of</span> <span class="n">average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="o">-</span><span class="mf">6.307847922891953</span>
-<span class="n">Average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="mf">0.0018219499999999767</span>
-<span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">):</span> <span class="mf">1.0</span>
-<span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">running</span> <span class="n">avg</span><span class="p">,</span> <span class="n">all</span> <span class="n">trials</span><span class="p">):</span> <span class="mf">1.0</span>
+<span class="n">Log</span> <span class="n">of</span> <span class="n">average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">)</span><span class="o">:</span> <span class="o">-</span><span class="mf">6.307847922891953</span>
+<span class="n">Average</span> <span class="n">likelihood</span> <span class="n">weight</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">)</span><span class="o">:</span> <span class="mf">0.0018219499999999767</span>
+<span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">this</span> <span class="n">trial</span><span class="p">)</span><span class="o">:</span> <span class="mf">1.0</span>
+<span class="n">Fraction</span> <span class="n">of</span> <span class="n">consistent</span> <span class="n">worlds</span> <span class="p">(</span><span class="n">running</span> <span class="n">avg</span><span class="p">,</span> <span class="n">all</span> <span class="n">trials</span><span class="p">)</span><span class="o">:</span> <span class="mf">1.0</span>
 <span class="o">========</span> <span class="n">Query</span> <span class="n">Results</span> <span class="o">=========</span>
-<span class="n">Number</span> <span class="n">of</span> <span class="n">samples:</span> <span class="mi">10000</span>
-<span class="n">Distribution</span> <span class="n">of</span> <span class="nb">values</span> <span class="k">for</span> <span class="n">Burglary</span>
-  <span class="n">false</span>  <span class="mf">0.7233733088174801</span>
-  <span class="n">true</span>  <span class="mf">0.2766266911825274</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">samples</span><span class="o">:</span> <span class="mi">10000</span>
+<span class="n">Distribution</span> <span class="n">of</span> <span class="n">values</span> <span class="k">for</span> <span class="n">Burglary</span>
+  <span class="nb">false</span>  <span class="mf">0.7233733088174801</span>
+  <span class="nb">true</span>  <span class="mf">0.2766266911825274</span>
 <span class="o">========</span> <span class="n">Done</span> <span class="o">========</span>
 </pre></div>
 
 
 <p>It is possible to request 1 million samples by issuing the following command.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <p>Alternative algorithms are available. To use the Metropolis-Hasting algorithm (as described in Milch et al 2006):</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">s</span> <span class="n">blog</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">MHSampler</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">s</span> <span class="n">blog</span><span class="p">.</span><span class="n">sample</span><span class="p">.</span><span class="n">MHSampler</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <h1>Commandline options</h1>
 <p>The general form of blog command is</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file1</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">blog</span> <span class="n">file2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file3</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file1</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">blog</span> <span class="n">file2</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">blog</span> <span class="n">file3</span><span class="o">&gt;</span> <span class="p">...]</span>
 </pre></div>
 
 
@@ -172,7 +172,7 @@ It will draw 10,000 samples and output a probability. The following is a typical
   Initialize the random seed based on the clock time. If this flag is not given, the program uses a fixed random seed so its behavior is reproducible. Default: false.<br />
   For example:</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">r</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">r</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -186,7 +186,7 @@ It will draw 10,000 samples and output a probability. The following is a typical
 <code>-e blog.engine.LiuWestFilter</code><br />
   For example, the following command uses particle filter to run a Hidden Markov Model.</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -196,7 +196,7 @@ It will draw 10,000 samples and output a probability. The following is a typical
   It is used to control the accuracy of the inference. Default, 10,000. <br />
   For example, to run the burglary model with 1 million samples.</li>
 </ul>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000000</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -265,7 +265,7 @@ It will draw 10,000 samples and output a probability. The following is a typical
   It can accept an additional variable CLASSPATH to setup classpath of user provided distribution and library functions. For example, </p>
 </li>
 </ul>
-<div class="highlight"><pre><span class="n">CLASSPATH</span><span class="o">=</span><span class="n">userdir</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">CLASSPATH</span><span class="o">=</span><span class="n">userdir</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -273,7 +273,7 @@ It will draw 10,000 samples and output a probability. The following is a typical
 <li>Setting extra memory
   You may set additional options for java through JAVA_OPTS="...". For example, to setup 4096MB memory, </li>
 </ul>
-<div class="highlight"><pre><span class="n">JAVA_OPTS</span><span class="o">=</span><span class="s">&quot;-Xmx4096M&quot;</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">JAVA_OPTS</span><span class="o">=</span><span class="s">&quot;-Xmx4096M&quot;</span> <span class="n">blog</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
@@ -287,14 +287,14 @@ It will point out syntax errors, and output an abstract syntax tree for the port
 
 
 <p>For example, the following command will check the syntax of <code>example/burglary.blog</code>.</p>
-<div class="highlight"><pre><span class="n">bloglint</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="o">.</span><span class="n">blog</span>
+<div class="highlight"><pre><span class="n">bloglint</span> <span class="n">example</span><span class="o">/</span><span class="n">burglary</span><span class="p">.</span><span class="n">blog</span>
 </pre></div>
 
 
 <h1>Running dynamic models</h1>
 <p>For dynamic models (models with <code>Timestep</code>), one can use bootstrap particle filter. 
 Bootstrap particle filter is an approximate algorithm for making inference about dynamic probabilistic model with general distributions. The following command runs a particle filter for a hidden Markov model.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -408,7 +408,7 @@ Bootstrap particle filter is an approximate algorithm for making inference about
 <p>Note when using particle filtering or Liu-West filter, BLOG is answering the query at the query time.
 For example, <code>query S(@2)</code> will be answered after all evidence at <code>Timestep</code> 2. It is expected to give probability of the state at 2nd <code>Timestep</code> given all evidence at <code>Timestep</code> 0, 1, and 2.</p>
 <p>To specify the number of particles, use <code>-n</code>. By default, BLOG uses 10,000 particles. The following command runs a particle filter with 100,000 particles.</p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ParticleFilter</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100000</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ParticleFilter</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100000</span> <span class="n">example</span><span class="o">/</span><span class="n">hmm</span><span class="p">.</span><span class="n">dblog</span>
 </pre></div>
 
 
@@ -416,12 +416,22 @@ For example, <code>query S(@2)</code> will be answered after all evidence at <co
 <p>If your BLOG model contains static variables (random functions defined on types other than <code>Timestep</code>). You may consider using the Liu-West filter. The current implementation of Liu-West filter only work on scalar continuous static variables. To switch to Liu-West filter, use the option <code>-e LiuWestFilter</code></p>
 <p>BLOG requires a parameter <code>rho</code> for the degree of pertubation. Defaut is 0.95. It can be set using <code>-P rho=[number]</code>. The number should be in (0, 1]. 1.0 means no pertubation, i.e. plain particle filtering. </p>
 <p>The following command runs Liu-West filter on a simple auto-regressive model. </p>
-<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">LiuWestFilter</span> <span class="o">-</span><span class="n">P</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.98</span> <span class="n">example</span><span class="o">/</span><span class="n">ar1</span><span class="o">.</span><span class="n">dblog</span>
+<div class="highlight"><pre><span class="n">blog</span> <span class="o">-</span><span class="n">e</span> <span class="n">blog</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">LiuWestFilter</span> <span class="o">-</span><span class="n">P</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.98</span> <span class="n">example</span><span class="o">/</span><span class="n">ar1</span><span class="p">.</span><span class="n">dblog</span>
 </pre></div>
 
 
 <p>Please refer to <code>example/ar1.dblog</code> for the full model. </p>
 </section>
 
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-52739552-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
 </body>
 </html>
